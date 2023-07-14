@@ -97,7 +97,7 @@ let g:NERDTreeWinPos = "right"
 au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
 "-------------------------------------------------------------------------------
-" NERDTree Configs
+" CoC Configs
 "-------------------------------------------------------------------------------
 let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-highlight']
 let g:coc_disable_startup_warning = 1
