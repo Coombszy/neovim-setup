@@ -1,3 +1,5 @@
+" © 2023 Liam Coombs <LCCoombs@hotmail.co.uk>
+
 "-------------------------------------------------------------------------------
 " Override default configs
 "-------------------------------------------------------------------------------
@@ -25,15 +27,12 @@ call plug#begin()
     " Lightline
     Plug 'itchyny/lightline.vim'
 
-    " Git
-    Plug 'mhinz/vim-signify'
-
     " Themes
     Plug 'safv12/andromeda.vim'
     Plug 'rebelot/kanagawa.nvim'
 
     " Telescope
-    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/plenary.nvim' " Dependancy
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 
     " Comments
@@ -41,6 +40,9 @@ call plug#begin()
 
     " Better Whitespace
     Plug 'ntpeters/vim-better-whitespace'
+
+    " Git
+    Plug 'mhinz/vim-signify'
 
     " Git Diff tool
     Plug 'sindrets/diffview.nvim'

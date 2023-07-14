@@ -1,3 +1,5 @@
+# © 2023 Liam Coombs <LCCoombs@hotmail.co.uk>
+
 # Install Neovim
 choco install neovim -y
 
@@ -5,3 +7,4 @@ choco install neovim -y
 choco install ripgrep -y # Telescope
 choco install fzf -y # Telescope
 choco install nodejs -y # Coc
+

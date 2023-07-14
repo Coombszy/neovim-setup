@@ -1,3 +1,5 @@
+# © 2023 Liam Coombs <LCCoombs@hotmail.co.uk>
+
 # Create install directory
 $nvimDir = "$env:LOCALAPPDATA\nvim"
 if (!(Test-Path $nvimDir)) {
