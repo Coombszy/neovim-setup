@@ -47,6 +47,9 @@ call plug#begin()
     " Git Diff tool
     Plug 'sindrets/diffview.nvim'
 
+    " GitHub Copilot
+    Plug 'github/copilot.vim'
+
     " NERD
     Plug 'preservim/nerdtree'
 
@@ -103,8 +106,6 @@ au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 "-------------------------------------------------------------------------------
 let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-highlight']
 let g:coc_disable_startup_warning = 1
-" Controls-sorta
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 "-------------------------------------------------------------------------------
 " Controls
@@ -144,7 +145,8 @@ nnoremap <C-S-Left> :tabprev<CR>
 nnoremap <C-S-Right> :tabnext<CR>
 
 " CoC Completion/Suggestion
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <F4> coc#refresh() " Refresh CoC suggestions
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>" " Enter to confirm completion
 
 " Terminal Functionality
 "" Toggle terminal on/off
