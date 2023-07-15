@@ -144,6 +144,9 @@ noremap <C-Right> <C-w><Right>
 nnoremap <C-S-Left> :tabprev<CR>
 nnoremap <C-S-Right> :tabnext<CR>
 
+" CoC Rename
+nnoremap <leader>rn <Plug>(coc-rename)
+
 " CoC Completion/Suggestion
 inoremap <silent><expr> <F4> coc#refresh() " Refresh CoC suggestions
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>" " Enter to confirm completion
