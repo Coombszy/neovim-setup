@@ -15,6 +15,7 @@ set shiftwidth=4 " Changes the indent when using >>, <<, and ==
 set softtabstop=4 " Something smart, just keep it the same as `tabstop`. This makes no difference if `shiftwidth` is the same as `tabstop`... i think
 set expandtab " Pressing tab key inserts indentation according to `shiftwidth`
 set smarttab " Pressing tab considers current cursor context/position
+set clipboard=unnamedplus
 
 "-------------------------------------------------------------------------------
 " Setup plugins
