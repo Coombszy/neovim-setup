@@ -34,7 +34,7 @@ call plug#begin()
 
     " Telescope
     Plug 'nvim-lua/plenary.nvim' " Dependancy
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.3' }
 
     " Comments
     Plug 'numToStr/Comment.nvim'
@@ -54,6 +54,9 @@ call plug#begin()
     " NERD
     Plug 'preservim/nerdtree'
 
+    " Floating Terminal
+    Plug 'voldikss/vim-floaterm'
+
 call plug#end()
 
 lua require('Comment').setup()
@@ -65,33 +68,50 @@ lua require('telescope').setup{  defaults = { file_ignore_patterns = { ".git" }}
 colorscheme kanagawa-dragon
 
 "-------------------------------------------------------------------------------
-" Terminal
+" Terminal - DISABLED! Use Floaterm instead
 "-------------------------------------------------------------------------------
-let g:term_buf = 0
-let g:term_win = 0
-function! TermToggle(height)
-    if win_gotoid(g:term_win)
-        hide
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            exec "buffer " . g:term_buf
-        catch
-            if has("win32") || has("win64")
-                call termopen("powershell.exe", {"detach": 0})
-            else
-                call termopen($SHELL, {"detach": 0})
-            endif
-            let g:term_buf = bufnr("")
-            set nonumber
-            set norelativenumber
-            set signcolumn=no
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
-endfunction
+" let g:term_buf = 0
+" let g:term_win = 0
+" function! TermToggle(height)
+"     if win_gotoid(g:term_win)
+"         hide
+"     else
+"         botright new
+"         exec "resize " . a:height
+"         try
+"             exec "buffer " . g:term_buf
+"         catch
+"             if has("win32") || has("win64")
+"                 call termopen("powershell.exe", {"detach": 0})
+"             else
+"                 call termopen($SHELL, {"detach": 0})
+"             endif
+"             let g:term_buf = bufnr("")
+"             set nonumber
+"             set norelativenumber
+"             set signcolumn=no
+"         endtry
+"         startinsert!
+"         let g:term_win = win_getid()
+"     endif
+" endfunction
+" Moved from `" Controls` section
+" Terminal Functionality
+"" Toggle terminal on/off
+" nnoremap <F2> :call TermToggle(12)<CR>
+" inoremap <F2> <Esc>:call TermToggle(12)<CR>
+" tnoremap <F2> <C-\><C-n>:call TermToggle(12)<CR>
+"" Terminal go back to normal mode
+" tnoremap <Esc> <C-\><C-n>
+" tnoremap :q! <C-\><C-n>:q!<CR>
+"
+"-------------------------------------------------------------------------------
+" Floaterm Configs
+"-------------------------------------------------------------------------------
+let g:floaterm_title = 'Terminal'
+let g:floaterm_width = 1.0
+let g:floaterm_height = 0.34
+let g:floaterm_position = 'bottom'
 
 "-------------------------------------------------------------------------------
 " NERDTree Configs
@@ -152,16 +172,11 @@ nnoremap <leader>rn <Plug>(coc-rename)
 inoremap <silent><expr> <F4> coc#refresh() " Refresh CoC suggestions
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>" " Enter to confirm completion
 
-" Terminal Functionality
-"" Toggle terminal on/off
-nnoremap <F2> :call TermToggle(12)<CR>
-inoremap <F2> <Esc>:call TermToggle(12)<CR>
-tnoremap <F2> <C-\><C-n>:call TermToggle(12)<CR>
-"" Terminal go back to normal mode
-tnoremap <Esc> <C-\><C-n>
-tnoremap :q! <C-\><C-n>:q!<CR>
+" FloatTerm
+nnoremap <F2> :FloatermToggle<CR>
+inoremap <F2> <Esc>:FloatermToggle<CR>
+tnoremap <F2> <C-\><C-n>:FloatermToggle<CR>
 
 " Git Diff view
 nnoremap <leader>g :DiffviewOpen<cr>
 nnoremap <leader>G :DiffviewClose<cr>
-
