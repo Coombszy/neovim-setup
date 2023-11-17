@@ -188,3 +188,8 @@ tnoremap <F2> <C-\><C-n>:FloatermToggle<CR>
 " Git Diff view
 nnoremap <leader>g :DiffviewOpen<cr>
 nnoremap <leader>G :DiffviewClose<cr>
+
+" Terminal mode
+command VTerminal vsplit term://$SHELL
+command Terminal split term://$SHELL
+
