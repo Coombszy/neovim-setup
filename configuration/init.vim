@@ -31,6 +31,7 @@ call plug#begin()
     " Themes
     Plug 'safv12/andromeda.vim'
     Plug 'rebelot/kanagawa.nvim'
+    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
     " Telescope
     Plug 'nvim-lua/plenary.nvim' " Dependancy
@@ -65,7 +66,7 @@ lua require('telescope').setup{  defaults = { file_ignore_patterns = { ".git" }}
 "-------------------------------------------------------------------------------
 " Theme
 "-------------------------------------------------------------------------------
-colorscheme kanagawa-dragon
+colorscheme catppuccin
 
 "-------------------------------------------------------------------------------
 " Terminal - DISABLED! Use Floaterm instead
