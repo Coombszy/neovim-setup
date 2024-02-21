@@ -58,6 +58,9 @@ call plug#begin()
     " Floating Terminal
     Plug 'voldikss/vim-floaterm'
 
+    " Treesitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 call plug#end()
 
 lua require('Comment').setup()
@@ -68,44 +71,6 @@ lua require('telescope').setup{  defaults = { file_ignore_patterns = { ".git" }}
 "-------------------------------------------------------------------------------
 colorscheme catppuccin
 
-"-------------------------------------------------------------------------------
-" Terminal - DISABLED! Use Floaterm instead
-"-------------------------------------------------------------------------------
-" let g:term_buf = 0
-" let g:term_win = 0
-" function! TermToggle(height)
-"     if win_gotoid(g:term_win)
-"         hide
-"     else
-"         botright new
-"         exec "resize " . a:height
-"         try
-"             exec "buffer " . g:term_buf
-"         catch
-"             if has("win32") || has("win64")
-"                 call termopen("powershell.exe", {"detach": 0})
-"             else
-"                 call termopen($SHELL, {"detach": 0})
-"             endif
-"             let g:term_buf = bufnr("")
-"             set nonumber
-"             set norelativenumber
-"             set signcolumn=no
-"         endtry
-"         startinsert!
-"         let g:term_win = win_getid()
-"     endif
-" endfunction
-" Moved from `" Controls` section
-" Terminal Functionality
-"" Toggle terminal on/off
-" nnoremap <F2> :call TermToggle(12)<CR>
-" inoremap <F2> <Esc>:call TermToggle(12)<CR>
-" tnoremap <F2> <C-\><C-n>:call TermToggle(12)<CR>
-"" Terminal go back to normal mode
-" tnoremap <Esc> <C-\><C-n>
-" tnoremap :q! <C-\><C-n>:q!<CR>
-"
 "-------------------------------------------------------------------------------
 " Floaterm Configs
 "-------------------------------------------------------------------------------
@@ -136,6 +101,21 @@ let g:copilot_filetypes = {
     \ 'markdown': v:true,
     \ 'yaml': v:true
     \ }
+
+"-------------------------------------------------------------------------------
+" Treesitter Configs
+"-------------------------------------------------------------------------------
+lua << EOF
+require('nvim-treesitter.configs').setup{
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "terraform", "bash", "yaml"},
+    highlight = {
+        enable = true,
+    },
+    -- indent = {
+    --     enable = true,
+    -- }
+}
+EOF
 
 "-------------------------------------------------------------------------------
 " Controls
@@ -193,4 +173,7 @@ nnoremap <leader>G :DiffviewClose<cr>
 " Terminal mode
 command VTerminal vsplit term://$SHELL
 command Terminal split term://$SHELL
+
+" Disable F1, Help key
+map <F1> <Nop>
 
