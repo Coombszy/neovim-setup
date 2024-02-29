@@ -177,3 +177,6 @@ command Terminal split term://$SHELL
 " Disable F1, Help key
 map <F1> <Nop>
 
+" Toggle relative line numbers
+noremap <C-l> :set relativenumber!<CR>
+
