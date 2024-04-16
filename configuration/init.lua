@@ -112,8 +112,9 @@ require("lazy").setup({
                 },
             })
             -- Keybindings
-            map("", "?", "<cmd>Telescope find_files<CR>", { noremap = true })
-            map("", "'", "<cmd>Telescope live_grep<CR>", { noremap = true })
+            map("", "?", "<cmd>Telescope find_files<CR>",        { noremap = true, desc = "Find files" })
+            map("", "'", "<cmd>Telescope live_grep<CR>",         { noremap = true, desc = "Live grep" })
+            map("", "<leader>sr", "<cmd>Telescope oldfiles<CR>", { noremap = true, desc = "Old files" })
         end,
     },
 
@@ -308,14 +309,14 @@ require("lazy").setup({
             function ToggleMiniFiles()
                 if State["MiniFilesEnabled"] == 0 then
                     State["MiniFilesEnabled"] = 1
-                    mf.open()
+                    mf.open(vim.api.nvim_buf_get_name(0))
                 else
                     State["MiniFilesEnabled"] = 0
                     mf.close()
                 end
             end
 
-            map("n", "<F3>", "<cmd>lua ToggleMiniFiles()<CR>", {})
+            map("n", "<F3>", "<cmd>lua ToggleMiniFiles()<CR>", { desc = "Toggle mini.files"})
         end,
     },
 
@@ -358,9 +359,9 @@ require("lazy").setup({
             g.floaterm_width = 0.999 -- Lua convets 1.0 to 1, which is then 1 column
             g.floaterm_height = 0.34
             g.floaterm_position = "bottom"
-            map("n", "<F2>", "<cmd>FloatermToggle<CR>", {})
-            map("i", "<F2>", "<ESC><cmd>FloatermToggle<CR>", {})
-            map("t", "<F2>", "<C-\\><C-n><cmd>FloatermToggle<CR>", {})
+            map("n", "<F2>", "<cmd>FloatermToggle<CR>",            { desc = "Toggle float term" })
+            map("i", "<F2>", "<ESC><cmd>FloatermToggle<CR>",       { desc = "Toggle float term" })
+            map("t", "<F2>", "<C-\\><C-n><cmd>FloatermToggle<CR>", { desc = "Toggle float term" })
         end,
     },
 
@@ -372,8 +373,20 @@ require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("nvim-web-devicons").setup()
-            map("n", "<leader>g", "<cmd>DiffviewOpen<CR>", {})
-            map("n", "<leader>G", "<cmd>DiffviewClose<CR>", {})
+            map("n", "<leader>g", "<cmd>DiffviewOpen<CR>",  { desc = "Open diff view" })
+            map("n", "<leader>G", "<cmd>DiffviewClose<CR>", { desc = "Close diff view" })
         end,
     },
+
+    {
+        "vim-test/vim-test",
+        keys = {
+            { "<leader>tt", "<cmd>TestFile<cr>",    { desc = "Test Test" } },
+            { "<leader>tn", "<cmd>TestNearest<cr>", { desc = "Test Nearest" } },
+            { "<leader>ts", "<cmd>TestSuite<cr>",   { desc = "Test Suite" } },
+            { "<leader>tl", "<cmd>TestLast<cr>",    { desc = "Test Last" } },
+            { "<leader>tv", "<cmd>TestVisit<cr>",   { desc = "Test Visit" } },
+        },
+    },
+
 })
