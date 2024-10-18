@@ -31,6 +31,8 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
 
 vim.g.have_nerd_font = true
 
@@ -108,7 +110,7 @@ require("lazy").setup({
                     }
                 },
                 defaults = {
-                    file_ignore_patterns = { ".git" },
+                    file_ignore_patterns = { ".git/", "node_modules/", ".cache/" },
                     layout_config = {
                         horizontal = { width = 0.95 },
                     }
@@ -130,11 +132,13 @@ require("lazy").setup({
         config = function()
             local configs = require("nvim-treesitter.configs")
             configs.setup({
-                ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "tsx", "typescript", "yaml" },
+                ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "tsx", "typescript", "yaml", "python" },
                 auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },
             })
+            vim.opt.foldmethod = "expr"
+            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end
     },
 
@@ -185,6 +189,9 @@ require("lazy").setup({
 
             -- Configure LSP servers
             lspconfig["tsserver"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["terraformls"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["tflint"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["pyright"].setup { capabilities = cap, on_attach = callback }
             lspconfig["lua_ls"].setup {
                 capabilities = cap,
                 on_attach = callback,
@@ -206,7 +213,7 @@ require("lazy").setup({
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup {
-                ensure_installed = { "tsserver", "lua_ls" },
+                ensure_installed = { "tsserver", "lua_ls", "terraformls", "tflint", "pyright" },
                 automatic_installation = true, -- Auto install servers that are configured, but not ensured
             }
         end
@@ -308,16 +315,11 @@ require("lazy").setup({
                 },
             })
             local mf = require("mini.files")
-            State["MiniFilesEnabled"] = 0
-            function ToggleMiniFiles()
-                if State["MiniFilesEnabled"] == 0 then
-                    State["MiniFilesEnabled"] = 1
-                    mf.open(vim.api.nvim_buf_get_name(0))
-                else
-                    State["MiniFilesEnabled"] = 0
-                    mf.close()
-                end
-            end
+			function ToggleMiniFiles()
+				if not mf.close() then
+					mf.open()
+				end
+			end
 
             map("n", "<F3>", "<cmd>lua ToggleMiniFiles()<CR>", { desc = "Toggle mini.files" })
         end,
