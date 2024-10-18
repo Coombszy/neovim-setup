@@ -113,7 +113,8 @@ require("lazy").setup({
                     file_ignore_patterns = { ".git/", "node_modules/", ".cache/" },
                     layout_config = {
                         horizontal = { width = 0.95 },
-                    }
+                    },
+                    path_display = { "smart" }
                 },
             })
             -- Keybindings
