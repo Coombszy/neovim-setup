@@ -5,7 +5,7 @@
 2. Install packages:
 ```sh
 sudo apt update
-sudo apt install fzf ripgrep fd-find
+sudo apt install fzf ripgrep fd-find xclip
 ```
 3. Install node >= 18
 4. Run 
