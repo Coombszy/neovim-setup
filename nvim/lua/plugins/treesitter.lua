@@ -1,12 +1,12 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    tag = "v0.9.2",
+    tag = "v0.9.3",
     event = "VimEnter",
     build = "<cmd>TSUpdate",
     config = function()
         local configs = require("nvim-treesitter.configs")
         configs.setup({
-            ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "tsx", "typescript", "yaml", "python" },
+            ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "tsx", "typescript", "yaml", "python", "go" },
             auto_install = true,
             highlight = { enable = true },
             indent = { enable = true },

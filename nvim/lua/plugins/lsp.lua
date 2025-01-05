@@ -50,6 +50,7 @@ return {
             lspconfig["terraformls"].setup { capabilities = cap, on_attach = callback }
             lspconfig["tflint"].setup { capabilities = cap, on_attach = callback }
             lspconfig["pyright"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["gopls"].setup { capabilities = cap, on_attach = callback }
         end,
     },
 
