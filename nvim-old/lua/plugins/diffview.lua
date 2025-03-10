@@ -1,7 +1,7 @@
 return {
     "sindrets/diffview.nvim",
     -- tag = "", -- None suitable
-    event = "VeryLazy",
+    event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("nvim-web-devicons").setup()
