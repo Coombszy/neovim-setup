@@ -1,15 +1,17 @@
 return {
 
-    -- Mason (LSP Config/Autoloading)
+    -- LSP Config (nvim-lspconfig)
     {
-        "williamboman/mason.nvim",
-        event = "VeryLazy",
-        tag = "stable",
-        dependencies = { "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig", "hrsh7th/cmp-nvim-lsp" },
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile", "BufEnter", "BufNew" },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+        },
         config = function()
+            local lspconfig = require("lspconfig")
+            local cmp_nvim_lsp = require("cmp_nvim_lsp")
             local bmap = vim.api.nvim_buf_set_keymap
             local opts = { noremap = true, silent = true }
-            local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
             -- b is the buffer id
             local callback = function(_, b)
@@ -44,21 +46,26 @@ return {
             local cap = cmp_nvim_lsp.default_capabilities()
 
             -- Configure LSP servers
-            require("mason").setup()
-            require("mason-lspconfig").setup {}
-            require("mason-lspconfig").setup_handlers {
-                -- The first entry (without a key) will be the default handler
-                -- and will be called for each installed server that doesn't have
-                -- a dedicated handler.
-                function (server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup { capabilities = cap, on_attach = callback }
-                end,
-                -- Provide targeted overrides for specific servers.
-                ["rust_analyzer"] = function ()
-                    require("rust-tools").setup {}
-                end,
-            }
+            lspconfig["ts_ls"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["terraformls"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["tflint"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["pyright"].setup { capabilities = cap, on_attach = callback }
+            lspconfig["gopls"].setup { capabilities = cap, on_attach = callback }
+        end,
+    },
 
+    -- Mason
+    {
+        "williamboman/mason.nvim",
+        event = "VimEnter",
+        tag = "stable",
+        dependencies = { "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig" },
+        config = function()
+            require("mason").setup()
+            require("mason-lspconfig").setup {
+                ensure_installed = { "ts_ls", "terraformls", "tflint", "pyright" },
+                automatic_installation = true, -- Auto install servers that are configured, but not ensured
+            }
         end
     },
 
@@ -66,7 +73,7 @@ return {
     {
         "hrsh7th/nvim-cmp",
         -- tag = "", -- None suitable
-        event = "VeryLazy",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-buffer",           -- source from buffer
             "hrsh7th/cmp-path",             -- source from file system paths

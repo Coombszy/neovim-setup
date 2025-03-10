@@ -1,7 +1,7 @@
 return {
     "voldikss/vim-floaterm",
     -- tag = "", -- None suitable
-    event = "VeryLazy",
+    event = "VimEnter",
     config = function()
         local g = vim.g
         g.floaterm_title = "Terminal"

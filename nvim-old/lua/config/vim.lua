@@ -13,5 +13,4 @@ vim.opt.smarttab = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.opt.relativenumber = true
 vim.g.have_nerd_font = true

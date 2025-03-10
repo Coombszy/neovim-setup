@@ -1,6 +1,6 @@
 return {
     "vim-test/vim-test",
-    event = "VeryLazy",
+    event = "VimEnter",
     keys = {
         { "<leader>tt", "<cmd>TestFile<cr>",    { desc = "Test Test" } },
         { "<leader>tn", "<cmd>TestNearest<cr>", { desc = "Test Nearest" } },
