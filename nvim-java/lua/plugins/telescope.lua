@@ -15,7 +15,7 @@ return {
                 layout_config = {
                     horizontal = { width = 0.95 },
                 },
-                path_display = { "smart" }
+                -- path_display = { "smart" }
             },
         })
         -- Keybindings

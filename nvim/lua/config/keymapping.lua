@@ -20,7 +20,7 @@ map("", "<C-S-Left>", "<cmd>tabprev<CR>", {})
 map("", "<C-S-Right>", "<cmd>tabnext<CR>", {})
 
 --Toggles
-map("", "<C-l>", "<cmd>set relativenumber!<CR>", {})
+map("", "<C-S-l>", "<cmd>set relativenumber!<CR>", {})
 
 -- Disable
 map("", "<F1>", "<Nop>", {})
