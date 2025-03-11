@@ -24,4 +24,3 @@ return {
         vim.api.nvim_set_keymap("", "<leader>sr", "<cmd>Telescope oldfiles<CR>", { noremap = true, desc = "Old files" })
     end,
 }
-

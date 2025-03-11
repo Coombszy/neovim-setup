@@ -24,4 +24,3 @@ map("", "<C-S-l>", "<cmd>set relativenumber!<CR>", {})
 
 -- Disable
 map("", "<F1>", "<Nop>", {})
-

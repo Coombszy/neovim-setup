@@ -3,11 +3,11 @@ return {
     tag = "v0.9.3",
     event = "VeryLazy",
     build = "<cmd>TSUpdate",
-    cmd = {"TSUpdateSync", "TSUpdate", "TSInstall"} ,
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
         local configs = require("nvim-treesitter.configs")
         configs.setup({
-            ensure_installed = { "lua", "vim", "vimdoc", "yaml"},
+            ensure_installed = { "lua", "vim", "vimdoc", "yaml" },
             auto_install = true,
             highlight = { enable = true },
         })
@@ -15,4 +15,3 @@ return {
         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     end
 }
-

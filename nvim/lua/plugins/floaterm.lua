@@ -14,4 +14,3 @@ return {
         vim.api.nvim_set_keymap("t", "<F2>", "<C-\\><C-n><cmd>FloatermToggle<CR>", { desc = "Toggle float term" })
     end,
 }
-

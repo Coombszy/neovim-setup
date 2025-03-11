@@ -9,4 +9,3 @@ return {
         { "<leader>tv", "<cmd>TestVisit<cr>",   { desc = "Test Visit" } },
     },
 }
-

@@ -1,7 +1,7 @@
 local gruvbox = { -- Works nice with gruvbox theme
     fg = '#928374',
     bg = '#1F2223',
-    black ='#1B1B1B',
+    black = '#1B1B1B',
     skyblue = '#458588',
     cyan = '#83a597',
     green = '#689d6a',
@@ -18,6 +18,7 @@ return {
     "famiu/feline.nvim",
     tag = "v1.1.3",
     event = "VimEnter",
+    enabled = false,
     dependencies = { "lewis6991/gitsigns.nvim" },
     config = function()
         -- local ctp_feline = require("catppuccin.groups.integrations.feline")

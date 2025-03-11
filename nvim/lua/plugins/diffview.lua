@@ -9,4 +9,3 @@ return {
         vim.api.nvim_set_keymap("n", "<leader>G", "<cmd>DiffviewClose<CR>", { desc = "Close diff view" })
     end,
 }
-

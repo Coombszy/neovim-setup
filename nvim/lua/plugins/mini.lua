@@ -6,8 +6,9 @@ return {
         require("mini.files").setup({
             mappings = {
                 close  = "<ESC>",
-                go_in  = "<Right>",
-                go_out = "<Left>",
+                -- Stop using arrow keys loser!
+                -- go_in  = "<Right>",
+                -- go_out = "<Left>",
             },
         })
         local mf = require("mini.files")
