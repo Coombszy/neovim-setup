@@ -1,6 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    tag = "v0.9.3",
+    tag = "v0.10.0",
     event = "VeryLazy",
     build = "<cmd>TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
