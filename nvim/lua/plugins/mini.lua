@@ -12,12 +12,13 @@ return {
             },
         })
         local mf = require("mini.files")
-        function ToggleMiniFiles()
+        function ToggleMiniFiles(path)
             if not mf.close() then
-                mf.open()
+                mf.open(path)
             end
         end
 
         vim.api.nvim_set_keymap("n", "<F3>", "<cmd>lua ToggleMiniFiles()<CR>", { desc = "Toggle mini.files" })
+        vim.api.nvim_set_keymap("n", "<S-F3>", "<cmd>lua ToggleMiniFiles(vim.api.nvim_buf_get_name(0))<CR>", { desc = "Toggle mini.files (cwd)" })
     end,
 }
