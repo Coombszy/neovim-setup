@@ -2,8 +2,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     tag = "v0.10.0",
     event = "VeryLazy",
-    build = "<cmd>TSUpdate",
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    build = ":TSUpdate",
+    cmd = { "TSUpdate", "TSInstall" },
     config = function()
         local configs = require("nvim-treesitter.configs")
         configs.setup({
